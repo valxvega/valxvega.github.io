@@ -1,0 +1,298 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: transparent;
+    color: white;
+    line-height: 1.6;
+    scroll-behavior: smooth; 
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: url('Pictures/backgrounds/2.jpg') no-repeat center center/cover;
+    text-align: left;
+    font-family: "poppins", sans-serif;
+    padding-left: 50px;
+}
+
+.hero .content {
+    max-width: 500px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.more-info {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #470d6e; 
+    color: white;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.more-info:hover {
+    background-color: #0056b3;
+}
+
+
+.projects-section {
+    padding: 100px 20px; 
+    background-color: #111; 
+}
+
+.projects-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.project-box {
+    background-color: #333;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.project-box:hover {
+    transform: scale(1.05);
+    background-color: #444;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .projects-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-box {
+        width: 90%;
+    }
+}
+
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.project-box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 35px;
+    overflow: hidden;
+    text-align: center;
+    background: linear-gradient(145deg, #a172b8, #9067a3);
+box-shadow:  35px 35px 70px #260236,
+             -35px -35px 70px #431957;
+    background-color: #333;
+}
+
+.project-box img {
+    width: 150%;
+    height: 150%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.project-box span {
+    position: absolute;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.project-box:hover img {
+    transform: scale(1.05); 
+}
+#projects {
+    height: 100vh; 
+    padding: 100px 20px; 
+    background: url('Pictures/backgrounds/2.jpg') no-repeat center center/cover; 
+    color: white; 
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 40px; 
+}
+
+@media (max-width: 768px) {
+   
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+
+    
+    .projects-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-box {
+        width: 90%; 
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+   
+    .project-box {
+        width: 100%;
+    }
+
+    
+    .more-info {
+        padding: 10px 20px; 
+    }
+}
+
+
+#backToTop {
+    position: fixed;
+    bottom: 600px; 
+    left: 50%;  
+    transform: translateX(-50%);  
+    background-color: #470d6e; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    display: none;  
+    z-index: 1000; 
+}
+
+#backToTop:hover {
+    background-color: #0056b3;  
+}
+
+
+@media (max-width: 768px) {
+    #backToTop {
+        padding: 8px 16px; 
+        font-size: 12px; 
+    }
+}
