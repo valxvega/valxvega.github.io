@@ -1,6 +1,131 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Press Start 2P', sans-serif;
     box-sizing: border-box;
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://media.istockphoto.com/id/453251915/photo/yokohama-japan.jpg?s=612x612&w=0&k=20&c=7O6XkmIRxLCdLhOltSaztsLBP7P93xM1O7uaW6VVXHo='), linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+
+.navbar {
+    width: 90%;
+    padding: 30px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+
+.content {
+    text-align: center;
+    margin-top: 150px; /* Increased margin to move content lower */
+    color: white;
+    margin-bottom: 50px; /* Optional: Adjust space between heading and button */
+}
+
+.content h1 {
+    font-size: 80px;
+}
+
+button {
+    background-color: #C5C4FA;
+    border-radius: 30px;
+    color: white;
+    font-size: 50px;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    margin-top: 50px; /* Added margin to move button further down */
+}
+
+button:hover {
+    background-color: #F3D6FC;
+}
+
+section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.places-container, .food-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.place-item, .food-item {
+    width: 22%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #F3D6FC;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.place-item img, .food-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.place-info, .food-info {
+    padding: 10px;
+    text-align: left;
+}
+
+.description {
+    display: none;
+    font-size: 16px;
+    color: #555;
+    padding-top: 10px;
+}
+
+.place-item:hover, .food-item:hover {
+    background-color: #E0C1F4;
+}
+
+.testimonials {
+    background: #EBE2F8;
+    padding: 50px;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.testimonial {
+    width: 45%;
+    background: #F3D6FC;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
