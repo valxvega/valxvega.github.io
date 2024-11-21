@@ -1,76 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Val's Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attack on Titan Characters</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts for 'Anton' and 'Roboto' -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Body Styling */
+    body {
+      background: url('https://i.pinimg.com/originals/ba/a8/41/baa841933c888db879477ede780ec0a2.jpg') no-repeat center center / cover fixed;
+      color: #F3D6FC;
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      min-height: 100vh;
+      text-align: center; /* Center align all text */
+    }
+
+    /* Navbar */
+    .navbar {
+      font-family: 'Anton', sans-serif;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Align title and search bar together */
+    }
+
+    .navbar-brand {
+      color: #F3D6FC;
+      font-size: 3rem; /* Increased font size for title */
+      font-weight: bold;
+      margin-bottom: 0.5rem; /* Reduce space below the title */
+    }
+
+    .navbar .form-control {
+      background-color: #333;
+      color: #F3D6FC;
+      border: 2px solid #EBE2F8;
+      border-radius: 50px;
+      transition: 0.3s;
+      margin-top: 1rem; /* Add space below the title */
+      width: 300px; /* Adjust the width of the search bar */
+    }
+
+    .navbar .form-control:focus {
+      border-color: #F3D6FC;
+      box-shadow: 0 0 5px rgba(243, 214, 252, 0.5);
+    }
+
+    /* Character Cards */
+    .project-card {
+      position: relative;
+      width: 250px;
+      height: 350px;
+      margin: 1rem;
+      background-color: #F3D6FC;
+      border: 2px solid #EBE2F8;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(243, 214, 252, 0.5);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Card Back Description */
+    .card-description {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #F3D6FC;
+      font-size: 14px;
+      padding: 20px;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .project-card:hover img {
+      opacity: 0; /* Hide image on hover */
+    }
+
+    .project-card:hover .card-description {
+      opacity: 1; /* Show description on hover */
+      pointer-events: auto; /* Enable interaction with description */
+    }
+
+    .card-description p {
+      margin-top: 10px;
+    }
+
+    /* Search Bar Styling */
+    #searchInput {
+      padding: 0.75rem 1.25rem;
+      border-radius: 50px;
+      background-color: #333;
+      color: #F3D6FC;
+      border: 2px solid #EBE2F8;
+      font-size: 1.2rem;
+      width: 300px;
+      transition: 0.3s;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: #F3D6FC;
+      box-shadow: 0 0 5px rgba(243, 214, 252, 0.5);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .project-card {
+        width: 200px;
+        height: 300px;
+      }
+
+      #searchInput {
+        width: 250px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .project-card {
+        width: 180px;
+        height: 280px;
+      }
+    }
+
+    /* Adjust spacing for the character gallery */
+    .container {
+      margin-top: 3rem; /* Increase space below the search bar */
+    }
+  </style>
 </head>
-
 <body>
-    <section class="home text-center py-5 d-flex flex-column justify-content-center align-items-center">
-        <div class="container">
-            <h1 class="display-4 mb-4">Welcome to ValDelv's Projects</h1>
-            <p class="lead" id="introText" style="display: none;">Explore my upcoming projects and stay tuned!</p>
-            <div class="d-flex justify-content-center mt-3">
-                <a href="#" class="btn btn-lg btn-outline-light play-btn" id="projectButton">Project</a>
-            </div>
-            <div id="projects" class="projects mt-5" style="display: none;">
-                <h2 class="text-center mb-4">ValDelv Projects</h2>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card project-card">
-                            <a href="index2.html" target="_blank">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Project 1:</h5>
-                                    <p class="card-text">Explore the beauty of Yokohama</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card project-card">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Project 2:</h5>
-                                <p class="card-text">Upcoming...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card project-card">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Project 3:</h5>
-                                <p class="card-text">Upcoming...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('projectButton').addEventListener('click', function(event) {
-            event.preventDefault();
-            const projects = document.getElementById('projects');
-            const projectButton = document.getElementById('projectButton');
-            const introText = document.getElementById('introText');
 
-            if (projects.style.display === 'none' || projects.style.display === '') {
-                projects.style.display = 'block';
-                introText.style.display = 'block';
-                projectButton.textContent = "Home";
-            } else {
-                projects.style.display = 'none';
-                introText.style.display = 'none';
-                projectButton.textContent = "Project";
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Attack on Titan Characters</a>
+      <form class="d-flex" id="searchForm">
+        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search characters" aria-label="Search">
+      </form>
+    </div>
+  </nav>
+
+  <!-- Character Gallery -->
+  <div class="container mt-5">
+    <div class="row projects" id="characterGallery">
+      <!-- Character Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript to Fetch Data from AniList API -->
+  <script>
+    const query = `
+      query {
+        Media(id: 16498, type: ANIME) {  # Attack on Titan (Season 4)
+          characters {
+            edges {
+              node {
+                name {
+                  full
+                }
+                image {
+                  large
+                }
+                description
+              }
             }
-        });
-    </script>
-</body>
+          }
+        }
+      }
+    `;
 
+    // Fetch data from AniList API
+    fetch('https://graphql.anilist.co', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query })
+    })
+    .then(response => response.json())
+    .then(data => {
+      const characters = data.data.Media.characters.edges;
+      const gallery = document.getElementById('characterGallery');
+      characters.forEach(character => {
+        const cardHTML = `
+          <div class="col-md-4 col-sm-6">
+            <div class="project-card">
+              <img src="${character.node.image.large}" alt="${character.node.name.full}">
+              <div class="card-description">
+                <h5>${character.node.name.full}</h5>
+                <p>${character.node.description ? character.node.description.substring(0, 150) + '...' : 'No description available'}</p>
+              </div>
+            </div>
+          </div>
+        `;
+        gallery.innerHTML += cardHTML;
+      });
+
+      // Search Functionality
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+          const name = card.querySelector('.card-description h5').textContent.toLowerCase();
+          card.style.display = name.includes(query) ? 'block' : 'none';
+        });
+      });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+  </script>
+
+</body>
 </html>
