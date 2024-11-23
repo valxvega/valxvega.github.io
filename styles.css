@@ -57,9 +57,10 @@ body {
     padding: 1.5rem;
     color: black;
     box-shadow: 0 4px 10px rgba(243, 214, 252, 0.5);
-    max-width: 90%;
+    max-width: 100%;
     transition: 0.3s;
     margin: 1rem 0;
+    text-align: center;
 }
 
 .project-card h5, .project-card p {
