@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Page - Bumblebee Game</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+    body {
+      background: #808080;
+      color: #FFF;
+      font-family: 'Raleway', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .display-4 {
+      font-size: calc(1.5rem + 1vw);
+      text-align: center;
+      margin-bottom: 20px;
+      color: #F2D638;
+    }
+
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    canvas {
+      border: 2px solid #FFF;
+      border-radius: 10px;
+      background: #808080;
+      width: 100%;
+      height: auto;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .controls button {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background-color: #F2D638;
+      color: #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .controls button:active {
+      background-color: #FFF;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: 2px solid #F2D638;
+      background-color: transparent;
+      color: #FFF;
+      text-align: center;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #F2D638;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 1.5rem;
+      }
+
+      .controls button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .display-4 {
+        font-size: 1.2rem;
+      }
+
+      .controls button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="display-4">404 - Page Not Found</div>
+  <div class="game-container">
+    <div id="score" style="font-size: 20px; margin-bottom: 10px;">Score: 0</div>
+    <canvas id="game"></canvas>
+    <div class="controls">
+      <button id="up">▲</button>
+      <button id="down">▼</button>
+    </div>
+    <div class="btn-container">
+      <button id="start-game" class="btn">Start Game</button>
+      <a href="index.html" class="btn">Go Home</a>
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('game');
+    const context = canvas.getContext('2d');
+    const upButton = document.getElementById('up');
+    const downButton = document.getElementById('down');
+    const startGameButton = document.getElementById('start-game');
+    const scoreDisplay = document.getElementById('score');
+    let bumblebee, obstacles, score, gameActive, rAF;
+    const barSpeed = 3;
+    const keys = { ArrowUp: false, ArrowDown: false };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth > 768 ? 400 : window.innerWidth * 0.8;
+      canvas.height = 275;
+    }
+
+    function resetGame() {
+      bumblebee = { x: 50, y: canvas.height / 2, radius: 10, speed: 3 };
+      obstacles = Array.from({ length: 2 }, (_, i) => ({
+        x: canvas.width + i * 200,
+        y: Math.random() * (canvas.height - 50),
+        width: 10,
+        height: 50,
+        type: 'rect',
+      }));
+      score = 0;
+      gameActive = true;
+      scoreDisplay.textContent = `Score: ${score}`;
+    }
+
+    function startGame() {
+      if (rAF) cancelAnimationFrame(rAF);
+      resetGame();
+      gameActive = true;
+      rAF = requestAnimationFrame(loop);
+    }
+
+    function loop() {
+      if (!gameActive) return;
+      rAF = requestAnimationFrame(loop);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      if (keys['ArrowUp']) bumblebee.y -= bumblebee.speed;
+      if (keys['ArrowDown']) bumblebee.y += bumblebee.speed;
+      bumblebee.y = Math.max(0, Math.min(canvas.height - bumblebee.radius * 2, bumblebee.y));
+      context.fillStyle = '#F2D638';
+      context.beginPath();
+      context.arc(bumblebee.x, bumblebee.y + bumblebee.radius, bumblebee.radius, 0, Math.PI * 2);
+      context.fill();
+      for (let obstacle of obstacles) {
+        obstacle.x -= barSpeed;
+        if (obstacle.x < -obstacle.width) {
+          obstacle.x = canvas.width;
+          obstacle.y = Math.random() * (canvas.height - obstacle.height);
+          obstacle.type = Math.random() > 0.5 ? 'rect' : 'circle';
+        }
+        if (obstacle.type === 'rect') {
+          context.fillStyle = '#000';
+          context.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        } else if (obstacle.type === 'circle') {
+          context.fillStyle = '#FFF';
+          context.beginPath();
+          context.arc(obstacle.x, obstacle.y + obstacle.height / 2, obstacle.height / 2, 0, Math.PI * 2);
+          context.fill();
+        }
+        if (
+          bumblebee.x < obstacle.x + obstacle.width &&
+          bumblebee.x + bumblebee.radius > obstacle.x &&
+          bumblebee.y < obstacle.y + obstacle.height &&
+          bumblebee.y + bumblebee.radius * 2 > obstacle.y
+        ) {
+          gameActive = false;
+        }
+      }
+      context.fillStyle = '#FFF';
+      context.font = '20px Arial';
+      context.fillText(`Score: ${score}`, 10, 30);
+    }
+
+    function setupControls() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') keys['ArrowUp'] = true;
+        if (e.key === 'ArrowDown') keys['ArrowDown'] = true;
+      });
+
+      document.addEventListener('keyup', (e) => {
+        if (e.key === 'ArrowUp') keys['ArrowUp'] = false;
+        if (e.key === 'ArrowDown') keys['ArrowDown'] = false;
+      });
+
+      function handleButtonPress(key) {
+        keys[key] = true;
+        setTimeout(() => {
+          keys[key] = false;
+        }, 100);
+      }
+
+      upButton.addEventListener('mousedown', () => handleButtonPress('ArrowUp'));
+      downButton.addEventListener('mousedown', () => handleButtonPress('ArrowDown'));
+      upButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleButtonPress('ArrowUp');
+      });
+      downButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleButtonPress('ArrowDown');
+      });
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    setupControls();
+    startGameButton.addEventListener('click', startGame);
+  </script>
+</body>
+</html>
