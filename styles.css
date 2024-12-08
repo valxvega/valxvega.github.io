@@ -2,17 +2,16 @@ body {
     background: url('https://cdn.wallpapersafari.com/83/88/drNXzk.jpg') no-repeat center center / cover fixed;
     color: #F3D6FC;
     font-family: 'Press Start 2P', cursive;
-    overflow-x: hidden;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .home {
-    color: inherit;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,7 +32,6 @@ body {
     background-color: transparent;
     color: inherit;
     transition: 0.3s;
-    text-align: center;
 }
 
 .play-btn:hover {
@@ -59,16 +57,10 @@ body {
     box-shadow: 0 4px 10px rgba(243, 214, 252, 0.5);
     max-width: 100%;
     transition: 0.3s;
-    margin: 1rem 0;
     text-align: center;
 }
 
-.project-card h5, .project-card p {
-    color: black;
-}
-
 .project-card:hover {
-    background-color: #F3D6FC;
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(243, 214, 252, 0.8);
 }
@@ -81,10 +73,6 @@ body {
     .play-btn {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
-    }
-
-    .project-card {
-        width: 100%;
     }
 }
 
