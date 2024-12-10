@@ -1,0 +1,123 @@
+body {
+    background: #808080;
+    color: #FFF;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .display-4 {
+    font-size: calc(1.5rem + 1vw);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #F2D638;
+  }
+  
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  #score {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  canvas {
+    border: 2px solid #FFF;
+    border-radius: 10px;
+    background: #808080;
+    width: 100%;
+    height: auto;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .controls button {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #F2D638;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+  }
+  
+  .controls button:active {
+    background-color: #FFF;
+  }
+  
+  .btn-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 2px solid #F2D638;
+    background-color: transparent;
+    color: #FFF;
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: #F2D638;
+    color: #000;
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .display-4 {
+      font-size: 1.5rem;
+    }
+    .controls button {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+    .btn {
+      font-size: 0.9rem;
+      padding: 0.8rem 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .display-4 {
+      font-size: 1.2rem;
+    }
+    .controls button {
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+    }
+    .btn {
+      font-size: 0.8rem;
+      padding: 0.6rem 1.2rem;
+    }
+  }
+  
